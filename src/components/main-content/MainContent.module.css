@@ -32,12 +32,12 @@
 .output-field {
   background-color: white;
   width: 80%;
-  height: 55%;
+  height: 56%;
   border: solid #f7ce3e 1px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 5px;
   font-family: monospace;
-  padding: 4px;
+  padding: 3px;
 }
 
 .text-area--container {

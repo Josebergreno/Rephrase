@@ -1,8 +1,22 @@
+import { useState, useRef } from "react";
 import styles from "./MainContent.module.css";
 
 const MainContent = () => {
+  const ref = useRef("");
+  const [textContent, setTextContent] = useState("");
   const clickHandler = (e) => {
-    console.log(e.target);
+    e.preventDefault();
+    setTextContent(ref.current.value);
+    async function fetchSynonyms() {
+      const response = await fetch(
+        `https://api.dictionaryapi.dev/api/v2/entries/en/${ref.current.value}`
+      );
+      const [data] = await response.json();
+      const [meanings] = [...data.meanings];
+      const synonyms = meanings.synonyms;
+      console.log(synonyms);
+    }
+    fetchSynonyms();
   };
   return (
     <div className={styles["main-content--container"]}>
@@ -15,6 +29,7 @@ const MainContent = () => {
           </div>
           <div className={styles["text-area--container"]}>
             <textarea
+              ref={ref}
               className={styles["text-area"]}
               id="text"
               cols={40}
@@ -34,7 +49,7 @@ const MainContent = () => {
         </form>
       </div>
       <div className={styles["output-container"]}>
-        <div className={styles["output-field"]}>output</div>
+        <div className={styles["output-field"]}>{textContent}</div>
       </div>
     </div>
   );
