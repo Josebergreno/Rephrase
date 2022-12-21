@@ -1,0 +1,7 @@
+.page-container {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: 20fr 80fr 20fr;
+  background-color: antiquewhite;
+}

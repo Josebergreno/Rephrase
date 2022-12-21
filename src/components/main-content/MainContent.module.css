@@ -1,0 +1,6 @@
+.main-content--container {
+  background-color: blueviolet;
+  grid: 2/3;
+  display: flex;
+  justify-content: center;
+}
