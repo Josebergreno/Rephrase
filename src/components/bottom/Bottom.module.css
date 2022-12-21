@@ -1,7 +1,27 @@
-.bottom {
-  background-color: green;
+.color {
+  color: #c5c1c0;
+  color: #0a1612;
+  color: #1a2930;
+  color: #f7ce3e;
+}
+.bottom-container {
   grid-row: 3/4;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.contact {
+  margin: 0;
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #1a2930;
+}
+
+.span {
+  font-size: 80%;
 }
