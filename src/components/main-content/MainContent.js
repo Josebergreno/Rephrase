@@ -8,13 +8,21 @@ const MainContent = () => {
     e.preventDefault();
     setTextContent(ref.current.value);
     async function fetchSynonyms() {
-      const response = await fetch(
-        `https://api.dictionaryapi.dev/api/v2/entries/en/${ref.current.value}`
-      );
-      const [data] = await response.json();
-      const [meanings] = [...data.meanings];
-      const synonyms = meanings.synonyms;
-      console.log(synonyms);
+      const synonymsUrl = `https://wordsapiv1.p.rapidapi.com/words/${ref.current.value}/synonyms`;
+
+      const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key":
+            "b123967923msh19bc23c13dee912p17e95bjsn19b6a6d19eb1",
+          "X-RapidAPI-Host": "wordsapiv1.p.rapidapi.com",
+        },
+      };
+
+      fetch(synonymsUrl, options)
+        .then((res) => res.json())
+        .then((json) => console.log(json))
+        .catch((err) => console.error("error:" + err));
     }
     fetchSynonyms();
   };
