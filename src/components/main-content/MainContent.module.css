@@ -12,11 +12,7 @@
   align-items: center;
   justify-content: center;
 }
-.input-container {
-  box-sizing: border-box;
-  height: 95%;
-  width: 50%;
-}
+
 .output-container {
   margin: 0;
   width: 50%;
@@ -38,114 +34,4 @@
   border-radius: 5px;
   font-family: monospace;
   padding: 3px;
-}
-
-.text-area--container {
-  width: 100%;
-  height: 70%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.text-area {
-  margin: 0;
-  border-radius: 5px;
-  width: 80%;
-  height: 80%;
-  max-width: 700px;
-  resize: none;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  color: #0a1612;
-  transition: 0.2s;
-}
-.text-area:focus {
-  outline: solid #f7ce3e 1px;
-}
-
-.label-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 15%;
-}
-.label {
-  color: #1a2930;
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.button-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 15%;
-}
-.button {
-  font-family: "Audiowide", cursive;
-  color: #e7dfdd;
-  background-color: rgba(0, 0, 0, 0.24);
-  width: 20vw;
-  height: 4vh;
-  border-radius: 5px;
-  border: solid black 1px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  transition: 0.2s;
-}
-.button:hover {
-  background-color: #f7ce3e;
-  color: #0a1612;
-}
-
-.form {
-  height: 100%;
-  border-bottom-right-radius: 25px;
-  border-top-right-radius: 25px;
-}
-
-.dropdown-container {
-  background-color: transparent;
-  width: fit-content;
-}
-.select {
-  color: #0a1612;
-  display: flex;
-  width: fit-content;
-  height: 3vh;
-  justify-content: center;
-  align-items: center;
-  /* margin: 3px; */
-  padding-left: 2px;
-  padding-right: 2px;
-  border: solid rgb(197, 193, 192) 1px;
-  background-color: transparent;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.option {
-  /* background-color: #e7dfdd; */
-  height: 3vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: solid rgb(197, 193, 192) 1px;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  background-color: rgba(197, 193, 192, 0.3);
-  animation-name: slide-down;
-  animation-timing-function: ease-in-out;
-  animation-duration: 0.1s;
-  animation-fill-mode: forwards;
-  animation-iteration-count: 1;
-}
-@keyframes slide-down {
-  from {
-    opacity: 0%;
-    transform: scale(0);
-  }
 }
