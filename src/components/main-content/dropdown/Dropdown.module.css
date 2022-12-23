@@ -1,6 +1,7 @@
 .option {
   /* background-color: #e7dfdd; */
   height: 3vh;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,6 +21,9 @@
     transform: scale(0);
   }
 }
+.option:hover {
+  background-color: aqua;
+}
 
 .dropdown-container {
   background-color: transparent;
@@ -29,7 +33,7 @@
 .select {
   color: #0a1612;
   display: flex;
-  width: fit-content;
+  /* width: fit-content; */
   height: 3vh;
   justify-content: center;
   align-items: center;

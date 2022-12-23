@@ -5,17 +5,27 @@ import styles from "./Dropdown.module.css";
 
 const Dropdown = (props) => {
   const [dropdownClicked, setDropdownClicked] = useState(false);
+  const [optionClicked, setOptionClicked] = useState(props.theWord);
   const dropdownHandler = () => {
-    dropdownClicked === false
-      ? setDropdownClicked(true)
-      : setDropdownClicked(false);
+    if (dropdownClicked === false) {
+      setDropdownClicked(true);
+    }
   };
+  const optionClickHandler = (e) => {
+    setOptionClicked(e.target.textContent);
+    setDropdownClicked(false);
+  };
+
   const dropdown = (
     <>
       {props.synonyms !== ""
         ? props.synonyms.map((val) => {
             return (
-              <div key={Math.random()} className={styles["option"]}>
+              <div
+                key={Math.random()}
+                onClick={optionClickHandler}
+                className={styles["option"]}
+              >
                 {val}
               </div>
             );
@@ -27,7 +37,7 @@ const Dropdown = (props) => {
   return props.theWord === "" ? undefined : (
     <div className={styles["dropdown-container"]}>
       <div onClick={dropdownHandler} className={styles["select"]}>
-        {props.theWord}
+        {optionClicked === "" ? props.theWord : optionClicked}
         <ArrowDownwardIcon
           sx={{
             width: "2vh",
