@@ -1,7 +1,14 @@
 import { useState, useRef } from "react";
 import styles from "./MainContent.module.css";
+import { Select, MenuItem, SvgIcon } from "@mui/material";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
 const MainContent = () => {
+  const [clicked, setClicked] = useState(false);
+  const dropdownHandler = () => {
+    console.log("clicked");
+    clicked === false ? setClicked(true) : setClicked(false);
+  };
   const ref = useRef("");
   const [textContent, setTextContent] = useState("");
 
@@ -63,7 +70,28 @@ const MainContent = () => {
         </form>
       </div>
       <div className={styles["output-container"]}>
-        <div className={styles["output-field"]}>{textContent}</div>
+        <div className={styles["output-field"]}>
+          {textContent}
+          <div className={styles["dropdown-container"]}>
+            <div onClick={dropdownHandler} className={styles["select"]}>
+              dropdown
+              <ArrowDownwardIcon
+                sx={{
+                  width: "2vh",
+                  height: "3vh",
+                  marginLeft: "2px",
+                  borderLeft: "solid black 1px",
+                }}
+              />
+            </div>
+            {clicked === true && (
+              <>
+                <div className={styles["option"]}>hello</div>
+                <div className={styles["option"]}>hello</div>
+              </>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
