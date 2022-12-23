@@ -121,21 +121,22 @@
   /* margin: 3px; */
   padding-left: 2px;
   padding-right: 2px;
-  border: solid #1a2930 1px;
+  border: solid rgb(197, 193, 192) 1px;
   background-color: transparent;
   border-radius: 3px;
   cursor: pointer;
 }
 
 .option {
-  background-color: #e7dfdd;
+  /* background-color: #e7dfdd; */
   height: 3vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: solid black 1px;
+  border-bottom: solid rgb(197, 193, 192) 1px;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
+  background-color: rgba(197, 193, 192, 0.3);
   animation-name: slide-down;
   animation-timing-function: ease-in-out;
   animation-duration: 0.1s;
@@ -144,6 +145,7 @@
 }
 @keyframes slide-down {
   from {
+    opacity: 0%;
     transform: scale(0);
   }
 }
