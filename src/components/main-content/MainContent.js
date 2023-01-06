@@ -13,6 +13,7 @@ const MainContent = () => {
   // dropdown clicked state
   const [theWord, setTheWord] = useState("");
   const [fetchedSynonyms, setFetchedSynonyms] = useState("");
+  const [responsesArray, setResponsesArray] = useState("");
 
   const options = {
     method: "GET",
@@ -38,14 +39,14 @@ const MainContent = () => {
     const arrayOfResponses = await Promise.all(
       urlArr.map((url) => fetch(url, options).then((res) => res.json()))
     );
-
     const [targetObj] =
       arrayOfResponses !== undefined && arrayOfResponses[0].results;
-    const word = arrayOfResponses[0].word;
+
     const partOfSpeech = targetObj.partOfSpeech;
     const synonyms = targetObj.synonyms;
+
     setFetchedSynonyms(synonyms);
-    setTheWord(word);
+    setResponsesArray(arrayOfResponses);
   };
 
   return (
@@ -53,7 +54,14 @@ const MainContent = () => {
       <Input reference={ref} onClick={clickHandler} />
       <div className={styles["output-container"]}>
         <div className={styles["output-field"]}>
-          <Dropdown theWord={theWord} synonyms={fetchedSynonyms} />
+          {responsesArray.length > 0 &&
+            responsesArray.map((val) => (
+              <Dropdown
+                key={Math.random()}
+                theWord={val.word}
+                synonyms={fetchedSynonyms}
+              />
+            ))}
         </div>
       </div>
     </div>
