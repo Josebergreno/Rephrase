@@ -13,8 +13,8 @@ const MainContent = () => {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "b123967923msh19bc23c13dee912p17e95bjsn19b6a6d19eb1",
-      "X-RapidAPI-Host": "wordsapiv1.p.rapidapi.com",
+      "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
+      "X-RapidAPI-Host": process.env.REACT_APP_API_HOST,
     },
   };
 
