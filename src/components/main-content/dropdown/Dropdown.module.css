@@ -50,18 +50,18 @@
 .dropdown-container {
   background-color: transparent;
   width: fit-content;
+  height: fit-content;
   max-height: 30vmin;
   overflow-y: scroll;
 }
 
-.select {
+.select,
+.no-synonyms--select {
   color: #0a1612;
   display: flex;
-  /* width: fit-content; */
   height: 3vh;
   justify-content: center;
   align-items: center;
-  /* margin: 3px; */
   padding-left: 2px;
   padding-right: 2px;
   border: solid rgb(197, 193, 192) 1px;

@@ -20,7 +20,6 @@
   border-bottom-left-radius: 25px;
   border-top-left-radius: 25px;
   display: flex;
-
   justify-content: center;
   align-items: center;
 }
@@ -28,6 +27,7 @@
 .output-field {
   background-color: white;
   display: flex;
+  flex-wrap: wrap;
   width: 80%;
   height: 56%;
   border: solid #f7ce3e 1px;

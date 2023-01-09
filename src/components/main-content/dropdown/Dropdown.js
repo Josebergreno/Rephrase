@@ -18,31 +18,41 @@ const Dropdown = (props) => {
   console.log(props.synonyms);
   return (
     <div className={styles["dropdown-container"]}>
-      <div onClick={dropdownHandler} className={styles["select"]}>
+      <div
+        onClick={dropdownHandler}
+        className={
+          props.synonyms === undefined
+            ? styles["no-synonyms--select"]
+            : styles["select"]
+        }
+      >
         {optionClicked === undefined ? props.word : optionClicked}
-        <ArrowDownwardIcon
-          sx={{
-            width: "2vh",
-            height: "3vh",
-            marginLeft: "2px",
-            borderLeft: "solid rgb(197, 193, 192) 1px",
-          }}
-        />
+        {props.synonyms !== undefined && (
+          <ArrowDownwardIcon
+            sx={{
+              width: "2vh",
+              height: "3vh",
+              marginLeft: "2px",
+              borderLeft: "solid rgb(197, 193, 192) 1px",
+            }}
+          />
+        )}
       </div>
-      {dropdownClicked === true &&
-        props.synonyms.map((val) => {
-          return val.map((value) => {
-            return (
-              <div
-                key={Math.random()}
-                onClick={optionClickHandler}
-                className={styles["option"]}
-              >
-                {value}
-              </div>
-            );
-          });
-        })}
+      {dropdownClicked === true && props.synonyms !== undefined
+        ? props.synonyms.map((val) => {
+            return val.map((value) => {
+              return (
+                <div
+                  key={Math.random()}
+                  onClick={optionClickHandler}
+                  className={styles["option"]}
+                >
+                  {value}
+                </div>
+              );
+            });
+          })
+        : undefined}
     </div>
   );
 };
