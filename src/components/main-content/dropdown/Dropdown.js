@@ -5,7 +5,7 @@ import styles from "./Dropdown.module.css";
 
 const Dropdown = (props) => {
   const [dropdownClicked, setDropdownClicked] = useState(false);
-  const [optionClicked, setOptionClicked] = useState(props.theWord);
+  const [optionClicked, setOptionClicked] = useState(undefined);
   const dropdownHandler = () => {
     if (dropdownClicked === false) {
       setDropdownClicked(true);
@@ -15,29 +15,10 @@ const Dropdown = (props) => {
     setOptionClicked(e.target.textContent);
     setDropdownClicked(false);
   };
-
-  const dropdown = (
-    <>
-      {props.synonyms !== ""
-        ? props.synonyms.map((val) => {
-            return (
-              <div
-                key={Math.random()}
-                onClick={optionClickHandler}
-                className={styles["option"]}
-              >
-                {val}
-              </div>
-            );
-          })
-        : undefined}
-    </>
-  );
-
-  return props.theWord === "" ? undefined : (
+  return (
     <div className={styles["dropdown-container"]}>
       <div onClick={dropdownHandler} className={styles["select"]}>
-        {optionClicked === "" ? props.theWord : optionClicked}
+        {optionClicked === undefined ? props.word : optionClicked}
         <ArrowDownwardIcon
           sx={{
             width: "2vh",
@@ -47,7 +28,18 @@ const Dropdown = (props) => {
           }}
         />
       </div>
-      {dropdownClicked === true && dropdown}
+      {dropdownClicked === true &&
+        props.synonyms.flat().map((val) => {
+          return (
+            <div
+              key={Math.random()}
+              onClick={optionClickHandler}
+              className={styles["option"]}
+            >
+              {val}
+            </div>
+          );
+        })}
     </div>
   );
 };

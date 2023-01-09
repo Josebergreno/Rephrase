@@ -1,19 +1,14 @@
-import { useState, useRef, Suspense } from "react";
+import { useState, useRef } from "react";
 import styles from "./MainContent.module.css";
 import Input from "./input/Input";
 import Dropdown from "./dropdown/Dropdown";
-import { SettingsPowerRounded } from "@mui/icons-material";
 
 const MainContent = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   // ref for output element
   const ref = useRef("");
-  // state handler for output container
-  const [textContent, setTextContent] = useState("");
   // dropdown clicked state
-  const [theWord, setTheWord] = useState("");
-  const [fetchedSynonyms, setFetchedSynonyms] = useState("");
-  const [responsesArray, setResponsesArray] = useState("");
+  const [responsesObj, setResponsesObj] = useState("");
 
   const options = {
     method: "GET",
@@ -25,7 +20,7 @@ const MainContent = () => {
 
   const clickHandler = (e) => {
     e.preventDefault();
-    setTextContent(ref.current.value);
+    setResponsesObj("");
     return fetchSynonyms();
   };
 
@@ -36,30 +31,46 @@ const MainContent = () => {
     const urlArr = indivArr.map(
       (val) => `https://wordsapiv1.p.rapidapi.com/words/${val}`
     );
+    // responses for each word
     const arrayOfResponses = await Promise.all(
       urlArr.map((url) => fetch(url, options).then((res) => res.json()))
     );
-    const [targetObj] =
-      arrayOfResponses !== undefined && arrayOfResponses[0].results;
 
-    const partOfSpeech = targetObj.partOfSpeech;
-    const synonyms = targetObj.synonyms;
-
-    setFetchedSynonyms(synonyms);
-    setResponsesArray(arrayOfResponses);
+    const responses = arrayOfResponses.map((responses) => {
+      const hasSynonyms =
+        responses.results === undefined
+          ? undefined
+          : responses.results.filter((value) => value.synonyms !== undefined);
+      const extractedSynonyms =
+        hasSynonyms === undefined
+          ? undefined
+          : hasSynonyms.map((val) => val.synonyms.flat());
+      const partOfSpeech =
+        extractedSynonyms === undefined
+          ? undefined
+          : responses.results[0].partOfSpeech;
+      const obj = {
+        word: responses.word,
+        synonyms: extractedSynonyms,
+        partOfSpeech: partOfSpeech,
+      };
+      setResponsesObj((prev) => [...prev, obj]);
+      return responsesObj;
+    });
   };
-
   return (
     <div className={styles["main-content--container"]}>
       <Input reference={ref} onClick={clickHandler} />
       <div className={styles["output-container"]}>
         <div className={styles["output-field"]}>
-          {responsesArray.length > 0 &&
-            responsesArray.map((val) => (
+          {responsesObj.length > 0 &&
+            responsesObj.map((val) => (
               <Dropdown
                 key={Math.random()}
-                theWord={val.word}
-                synonyms={fetchedSynonyms}
+                responsesObj={responsesObj}
+                word={val.word}
+                partOfSpeech={val.partOfSpeech}
+                synonyms={val.synonyms}
               />
             ))}
         </div>
