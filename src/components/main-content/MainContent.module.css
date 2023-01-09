@@ -27,6 +27,7 @@
 
 .output-field {
   background-color: white;
+  display: flex;
   width: 80%;
   height: 56%;
   border: solid #f7ce3e 1px;

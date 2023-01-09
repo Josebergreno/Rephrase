@@ -15,6 +15,7 @@ const Dropdown = (props) => {
     setOptionClicked(e.target.textContent);
     setDropdownClicked(false);
   };
+  console.log(props.synonyms);
   return (
     <div className={styles["dropdown-container"]}>
       <div onClick={dropdownHandler} className={styles["select"]}>
@@ -29,16 +30,18 @@ const Dropdown = (props) => {
         />
       </div>
       {dropdownClicked === true &&
-        props.synonyms.flat().map((val) => {
-          return (
-            <div
-              key={Math.random()}
-              onClick={optionClickHandler}
-              className={styles["option"]}
-            >
-              {val}
-            </div>
-          );
+        props.synonyms.map((val) => {
+          return val.map((value) => {
+            return (
+              <div
+                key={Math.random()}
+                onClick={optionClickHandler}
+                className={styles["option"]}
+              >
+                {value}
+              </div>
+            );
+          });
         })}
     </div>
   );
