@@ -17,7 +17,7 @@ const Input = (props) => {
             id="text"
             cols={40}
             rows={20}
-            placeholder="type whatever you want, and we'll rephrase it"
+            placeholder="type whatever you want, and we'll offer alternative words."
           ></textarea>
         </div>
         <div className={styles["button-container"]}>

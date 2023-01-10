@@ -54,7 +54,7 @@ const MainContent = () => {
           ? undefined
           : responses.results.filter((value) => value.synonyms !== undefined);
       const extractedSynonyms =
-        hasSynonyms === undefined
+        hasSynonyms === undefined || hasSynonyms.length === 0
           ? undefined
           : hasSynonyms.map((val) => val.synonyms.flat());
       const partOfSpeech =
