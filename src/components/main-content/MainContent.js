@@ -28,7 +28,19 @@ const MainContent = () => {
   const fetchSynonyms = async () => {
     // current text content split into array
     const indivArr = ref.current.value.split(" ");
-    const urlArr = indivArr.map(
+    const punctSplit = indivArr
+      .map((val) =>
+        val.match(/[^a-zA-Z ]+/)
+          ? val
+              .replace(/[^a-zA-Z ]+/, " " + val.match(/[^a-zA-Z ]+/))
+              .split(" ")
+          : val
+      )
+      .flat();
+    const removePunct = punctSplit.filter((val) =>
+      val.replace(/[^a-zA-Z ]+/, "")
+    );
+    const urlArr = removePunct.map(
       (val) => `https://wordsapiv1.p.rapidapi.com/words/${val}`
     );
     // responses for each word
@@ -80,3 +92,11 @@ const MainContent = () => {
 };
 
 export default MainContent;
+
+// console.log(
+//   indivArr
+//     .map((val) =>
+//       val.includes(",") ? val.replace(",", " ,").split(" ") : val
+//     )
+//     .flat()
+// );

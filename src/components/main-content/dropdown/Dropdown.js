@@ -10,12 +10,14 @@ const Dropdown = (props) => {
     if (dropdownClicked === false) {
       setDropdownClicked(true);
     }
+    if (dropdownClicked === true) {
+      setDropdownClicked(false);
+    }
   };
   const optionClickHandler = (e) => {
     setOptionClicked(e.target.textContent);
     setDropdownClicked(false);
   };
-  console.log(props.synonyms);
   return (
     <div className={styles["dropdown-container"]}>
       <div

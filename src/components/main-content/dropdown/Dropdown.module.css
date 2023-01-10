@@ -54,6 +54,9 @@
   max-height: 30vmin;
   overflow-y: scroll;
 }
+.dropdown-container:focus {
+  border: solid black 3px;
+}
 
 .select,
 .no-synonyms--select {
@@ -68,4 +71,8 @@
   background-color: transparent;
   border-radius: 3px;
   cursor: pointer;
+}
+
+.select:focus {
+  background-color: #8f54a0;
 }
